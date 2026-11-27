@@ -142,7 +142,7 @@ $('#btn-theme').addEventListener('click', () => { const next = isDark() ? 'light
 $$('.brand-name').forEach(el => el.textContent = BRAND);
 
 /* ---------- Hero ---------- */
-$('#hero-tee').innerHTML = motionSVG(byId('voltage'));
+$('#hero-tee').innerHTML = motionSVG(byId('voltage') || PRODUCTS.find(p => p.type === 'tee') || PRODUCTS[0]);
 const hv = $('#hero-video');
 if (hv.dataset.src) { hv.hidden = false; hv.src = hv.dataset.src; hv.addEventListener('error', () => { hv.hidden = true; }); }
 const tick = `FRETE GRÁTIS ACIMA DE ${money(FREE_SHIP)} <i>✦</i> ${INSTALLMENTS}X SEM JUROS <i>✦</i> ${Math.round(PIX_OFF*100)}% OFF NO PIX <i>✦</i> TROCA GRÁTIS EM 30 DIAS <i>✦</i> POSTAGEM EM 24H <i>✦</i> DROP 07 · 300 PEÇAS <i>✦</i> `;
@@ -216,7 +216,8 @@ window.addEventListener('resize', () => { buildDots(); });
 buildDots();
 
 /* ---------- Editorial ---------- */
-$('#editorial').innerHTML = EDITORIAL.map(ed => {
+// Telas editoriais de produtos desativados são omitidas (o texto é específico de cada peça).
+$('#editorial').innerHTML = EDITORIAL.filter(ed => byId(ed.id)).map(ed => {
   const p = byId(ed.id);
   return `<section class="ed${ed.flip ? ' flip' : ''}" style="--ed-bg:${p.bg[1]}" aria-label="${esc(ed.title)}">
     <div class="ed-word" aria-hidden="true">${esc(ed.word)}</div>
