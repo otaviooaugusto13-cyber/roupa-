@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Loja NØX</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header class="hdr">
+  <div class="wrap">
+    <button class="ibtn burger" id="btn-menu" aria-label="Abrir menu"><svg class="i" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    <a href="#topo" class="logo" aria-label="Página inicial"><span class="brand-name">NØX</span><b></b></a>
+    <nav class="nav" id="nav" aria-label="Categorias"></nav>
+    <div class="actions">
+      <button class="ibtn" id="btn-search" aria-label="Buscar"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
+      <button class="tgl" id="btn-theme" aria-pressed="true" aria-label="Modo escuro"><span class="knob"><svg class="i k-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><svg class="i k-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span></button>
+      <button class="ibtn" id="btn-cart" aria-label="Abrir carrinho"><svg class="i" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="count" id="cart-count">0</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mnav" id="mnav" aria-hidden="true">
+  <div class="scrim" data-close="mnav"></div>
+  <nav class="panel" aria-label="Menu">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <span class="logo"><span class="brand-name">NØX</span><b></b></span>
+      <button class="ibtn" data-close="mnav" aria-label="Fechar menu"><svg class="i" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="mnav-list" id="mnav-list"></div>
+  </nav>
+</div>
+
+<main id="topo">
+  <section class="hero" aria-label="Destaque da coleção">
+    <div class="hero-fx"></div>
+    <!-- Coloque a URL do seu vídeo/GIF em data-src. Vazio = fundo animado em gradiente. -->
+    <video class="hero-video" id="hero-video" autoplay muted loop playsinline data-src="" hidden></video>
+    <div class="hero-grid"></div>
+    <div class="hero-tee" id="hero-tee" aria-hidden="true"></div>
+    <div class="hero-shade"></div>
+    <div class="wrap">
+      <span class="eyebrow">Drop 07 · Coleção Frequência</span>
+      <h1>Vista a <span>frequência</span></h1>
+      <p>Camisetas oversized de 240 g em algodão peruano, com estampa em tinta refletiva que acende sob o flash. Tiragem de 300 peças por modelo.</p>
+      <div class="ctas">
+        <a href="#vitrine" class="btn btn-neon" data-filter="colecoes">Explorar coleção <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#lancamentos" class="btn btn-ghost">Ver lançamentos</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>240 g/m²</b>Gramatura</div>
+        <div><b>300</b>Peças por modelo</div>
+        <div><b>24h</b>Postagem</div>
+      </div>
+    </div>
+    <div class="ticker" aria-hidden="true"><div id="ticker"></div></div>
+  </section>
+
+  <section class="sec" id="lancamentos" aria-labelledby="t-lanc">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">Novos drops</span>
+          <h2 class="h2" id="t-lanc">Lançamentos</h2>
+          <p>Arraste para o lado ou use as setas. Passe o mouse para ver as costas.</p>
+        </div>
+        <div class="car-nav">
+          <button id="car-prev" aria-label="Anterior"><svg class="i" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+          <button id="car-next" aria-label="Próximo"><svg class="i" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+        </div>
+      </div>
+      <div class="track" id="track"></div>
+      <div class="dots" id="dots" role="tablist" aria-label="Páginas do carrossel"></div>
+    </div>
+  </section>
+
+  <div id="editorial"></div>
+
+  <section class="sec" id="vitrine" aria-labelledby="t-vit">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">Loja</span>
+          <h2 class="h2" id="t-vit">Vitrine</h2>
+        </div>
+        <p id="grid-count" style="font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase"></p>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Filtrar por categoria"></div>
+      <div class="chips sub" id="subchips" role="group" aria-label="Subcategorias" hidden></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <span class="logo"><span class="brand-name">NØX</span><b></b></span>
+        <p>Streetwear feito em São Paulo. Peças em tiragem limitada, pensadas para a cidade depois das 22h.</p>
+      </div>
+      <div><h4>Loja</h4><ul><li><a href="#lancamentos">Lançamentos</a></li><li><a href="#vitrine" data-filter="masculino">Masculino</a></li><li><a href="#vitrine" data-filter="feminino">Feminino</a></li><li><a href="#vitrine" data-filter="treino">Roupas de Treino</a></li><li><a href="#vitrine" data-tryon="">Provador IA</a></li></ul></div>
+      <div><h4>Ajuda</h4><ul><li><a href="#vitrine" data-guide>Guia de medidas</a></li><li><a href="#topo">Trocas e devoluções</a></li><li><a href="#topo">Rastrear pedido</a></li><li><a href="#topo">Contato</a></li></ul></div>
+      <div>
+        <h4>Aviso de drop</h4>
+        <form class="news" id="news"><label for="news-email" class="sr" style="position:absolute;left:-9999px">E-mail</label><input id="news-email" type="email" required placeholder="seu@email.com"><button class="btn btn-neon" type="submit">Assinar</button></form>
+        <p>Receba o link do próximo drop 1 hora antes de abrir para o público.</p>
+      </div>
+    </div>
+    <div class="legal"><span>© 2026 <span class="brand-name">NØX</span>. Loja demonstrativa.</span><span>Pix · Cartão em até 6x sem juros · Boleto</span></div>
+  </div>
+</footer>
+
+<!-- PDP -->
+<div class="ov pdp" id="pdp" aria-hidden="true">
+  <div class="scrim" data-close="pdp"></div>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="pdp-title">
+    <button class="x" data-close="pdp" aria-label="Fechar"><svg class="i" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div class="gal"><div class="gal-main" id="gal-main"></div><div class="thumbs" id="thumbs"></div></div>
+    <div class="info" id="pdp-info"></div>
+  </div>
+</div>
+
+<!-- PROVADOR IA -->
+<div class="ov tryon" id="tryon" aria-hidden="true">
+  <div class="scrim" data-close="tryon"></div>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="ty-title">
+    <button class="x" data-close="tryon" aria-label="Fechar provador"><svg class="i" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div class="ty-body" id="tryon-body"></div>
+  </div>
+</div>
+
+<!-- CARRINHO -->
+<div class="ov cart" id="cart" aria-hidden="true">
+  <div class="scrim" data-close="cart"></div>
+  <aside class="panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+    <div class="cart-head"><h3 id="cart-title">Carrinho <span id="cart-n"></span></h3><button class="ibtn" data-close="cart" aria-label="Fechar carrinho"><svg class="i" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="items" id="items"></div>
+    <div class="cart-foot" id="cart-foot"></div>
+  </aside>
+</div>
+
+<!-- BUSCA -->
+<div class="ov srch" id="srch" aria-hidden="true">
+  <div class="scrim" data-close="srch"></div>
+  <div class="box" role="dialog" aria-modal="true" aria-label="Buscar produtos">
+    <div class="wrap">
+      <div class="srch-row">
+        <svg class="i" viewBox="0 0 24 24" style="width:26px;height:26px;color:var(--accent)"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" type="search" placeholder="Buscar peças" autocomplete="off" aria-label="Buscar peças">
+        <button class="ibtn" data-close="srch" aria-label="Fechar busca"><svg class="i" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div class="results" id="results"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKOUT -->
+<div class="ov co" id="co" aria-hidden="true">
+  <div class="scrim" data-close="co"></div>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="co-title" id="co-body"></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span id="toast-msg"></span></div>
+
+<script type="module" src="/js/main.js"></script>
+</body>
+</html>
