@@ -337,10 +337,10 @@ svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .co .note{color:var(--muted);font-size:13px;margin:0 0 18px}
 .co-lines{display:grid;gap:8px;padding:14px;border-radius:14px;background:var(--surface);margin-bottom:16px;font-size:14px}
 .co-lines .row span:first-child{color:var(--fg)}
-.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.fields label{display:grid;gap:6px;font:600 11px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.fields label{display:grid;grid-template-columns:minmax(0,1fr);min-width:0;gap:6px;font:600 11px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .fields label.full{grid-column:1/-1}
-.fields input{min-height:48px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:0 14px;font:15px var(--f-body);letter-spacing:0;text-transform:none}
+.fields input{width:100%;min-width:0;min-height:48px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:0 14px;font:15px var(--f-body);letter-spacing:0;text-transform:none}
 .fields input:focus{outline:none;border-color:var(--accent);box-shadow:var(--glow)}
 .pay{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
 .pay button{min-height:50px;border-radius:12px;border:1.5px solid var(--line);font-weight:600;font-size:14px;transition:all .25s var(--ease)}
