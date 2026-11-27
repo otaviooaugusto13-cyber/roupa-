@@ -13,6 +13,8 @@ export function cpfValido(cpf) {
 }
 export const prazoTexto = (o) => (o.deliveryDays ? `${o.deliveryDays} ${o.deliveryDays === 1 ? 'dia útil' : 'dias úteis'}` : 'prazo a confirmar');
 
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
 export function htmlCalculadoraFrete() {
   return `<div class="calc" id="calc">
     <label for="calc-cep" class="calc-l">Calcule o prazo</label>
@@ -38,9 +40,9 @@ export function ligarCalculadoraFrete(raiz, getItem, money) {
       const it = getItem();
       const r = await postJSON('/api/shipping/quote', { cep: c, items: [{ slug: it.slug, size: it.size, qty: 1 }] });
       if (meu !== seq) return;
-      out.innerHTML = r.options.map((o) => `<div class="opt-row"><span><b>${o.name}</b> · ${prazoTexto(o)}</span><span>${money(o.priceCents / 100)}</span></div>`).join('')
+      out.innerHTML = r.options.map((o) => `<div class="opt-row"><span><b>${esc(o.name)}</b> · ${prazoTexto(o)}</span><span>${money(o.priceCents / 100)}</span></div>`).join('')
         + `<p class="calc-note">Frete grátis nas compras acima de ${money(r.freteGratisCents / 100)} (opção mais barata).</p>`;
-    } catch (e) { if (meu === seq) out.innerHTML = `<span class="calc-err">${e.message}</span>`; }
+    } catch (e) { if (meu === seq) out.innerHTML = `<span class="calc-err">${esc(e.message)}</span>`; }
     finally { ok.disabled = false; }
   }
   cep.addEventListener('input', () => { cep.value = mascaraCep(cep.value); if (soDigitos(cep.value).length === 8) calcular(); });
