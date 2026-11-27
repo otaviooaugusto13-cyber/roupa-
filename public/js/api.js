@@ -3,8 +3,13 @@
 import { PRODUTOS_EXEMPLO } from './produtos-exemplo.js';
 
 /** Converte um produto da API (/api/products) para o formato legado usado em main.js. */
+const TAMANHOS = ['P', 'M', 'G', 'GG', 'XGG'];
+/* Cores do mockup SVG para produtos cadastrados sem esses dados (o desenho aparece quando falta foto). */
+const MOCKUP_PADRAO = { color: '#141417', ink: '#A855F7', bg: ['#1d1b24', '#0c0c10'] };
+
 export function deApi(d) {
   const sizes = d.sizes || {};
+  const m = d.mockup || {};
   return {
     id: d.slug,
     name: d.name,
@@ -16,9 +21,12 @@ export function deApi(d) {
     price: d.priceCents / 100,
     compareAt: d.compareAtCents ? d.compareAtCents / 100 : null,
     // cores do mockup SVG (usado quando a foto falha)
-    color: d.mockup?.color, ink: d.mockup?.ink, word: d.mockup?.word, bg: d.mockup?.bg,
-    // tamanho sem estoque disponível = esgotado (riscado)
-    soldout: Object.entries(sizes).filter(([, qtd]) => qtd <= 0).map(([tam]) => tam),
+    color: m.color || MOCKUP_PADRAO.color,
+    ink: m.ink || MOCKUP_PADRAO.ink,
+    word: m.word || String(d.name || '').split(' ')[0].toUpperCase().slice(0, 10),
+    bg: m.bg?.length === 2 ? m.bg : MOCKUP_PADRAO.bg,
+    // tamanho sem variante ou sem estoque disponível = esgotado (riscado)
+    soldout: TAMANHOS.filter((tam) => !(sizes[tam] > 0)),
     fit: d.fit,
     desc: d.description,
     feats: d.features || [],
