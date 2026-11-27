@@ -1,0 +1,26 @@
+{
+  "name": "loja",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Loja streetwear — Express + Firestore",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "seed": "node server/seed.js",
+    "seed:dry": "node server/seed.js --dry-run",
+    "test": "node --test server/tests/estoque.test.js server/tests/pagamento-frete.test.js",
+    "test:emulador": "firebase emulators:exec --only firestore --project demo-loja \"npm test\""
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "express-rate-limit": "^7.4.0",
+    "firebase-admin": "^12.6.0",
+    "helmet": "^7.1.0",
+    "mercadopago": "^2.12.0"
+  }
+}
